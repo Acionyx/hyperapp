@@ -338,6 +338,13 @@ export function app(state, actions, view, container) {
         var oldKey = getKey(oldChildren[i])
         var newKey = getKey((children[k] = resolveNode(children[k])))
 
+        if (newKey === "HYPERAPP_SKIP") {
+          newKeyed[oldKey] = children[k] = oldChildren[i]
+          k++
+          i++
+          continue
+        }
+
         if (newKeyed[oldKey]) {
           i++
           continue
